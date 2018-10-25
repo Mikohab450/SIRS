@@ -1,0 +1,12 @@
+﻿cl : Command line warning D9025: overriding '/sdl' with '/GS-'
+  CBudynek.cpp
+c:\users\mikolaj\source\repos\lab_2_2\lab_2_2\cbudynek.cpp(5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\mikolaj\source\repos\lab_2_2\lab_2_2\cbudynek.cpp(11): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\mikolaj\source\repos\lab_2_2\lab_2_2\cbudynek.cpp(29): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\mikolaj\source\repos\lab_2_2\lab_2_2\cbudynek.cpp(63): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+  Generating Code...
+  lab_2_2.vcxproj -> C:\Users\Mikolaj\source\repos\lab_2_2\Debug\lab_2_2.exe
