@@ -1,0 +1,12 @@
+﻿  CMeble.cpp
+c:\users\mikolaj\documents\lab3\project1\project1\cmeble.cpp(9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\mikolaj\documents\lab3\project1\project1\cmeble.cpp(15): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\mikolaj\documents\lab3\project1\project1\cmeble.cpp(21): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\mikolaj\documents\lab3\project1\project1\cmeble.cpp(36): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\mikolaj\documents\lab3\project1\project1\cmeble.cpp(104): error C2248: 'CKrzesla::n': cannot access private member declared in class 'CKrzesla'
+  c:\users\mikolaj\documents\lab3\project1\project1\cmeble.h(19): note: see declaration of 'CKrzesla::n'
+  c:\users\mikolaj\documents\lab3\project1\project1\cmeble.h(17): note: see declaration of 'CKrzesla'
