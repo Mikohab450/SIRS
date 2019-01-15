@@ -36,6 +36,7 @@ public:
 class CNietoperz :  public CPtak,  public CSsak {
 
 public:
+	int & speed() { return CSsak::speed; }
 	CNietoperz() :CPtak(),CSsak(){ cout << "konstruktor bezarg cnietoperz\n"; }
 	CNietoperz(string nazwa_, double waga_, int speed_) :CPtak(nazwa_, waga_,speed_),CSsak(nazwa_, waga_, speed_){ cout << "konstruktor argumentowy4\n"; }
 	~CNietoperz() { cout << "destruktor4"; }
