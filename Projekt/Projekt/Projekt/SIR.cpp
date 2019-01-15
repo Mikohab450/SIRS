@@ -25,21 +25,7 @@ void resistable::dec() {
 void infected::dec() {
 	t--;
 }
-/*
-void simulate(int N, int M, double p1, string file_name, int it) {
-	
-	//vector<vector<person*> > tab1(N, vector<person*>(M,new susceptible())); //dwuwymiarowy wektor wskaznikow na obiekty
-//	ofstream file_;
-	//tab1[N/2][M/2] = new infected();
-	//file_.open(file_name);
-	population testowa(file_name, N, M, p1);
-	for (int iteration = 0; iteration < it; iteration++) {
-	
-		testowa.generate();
-	//	swap(tab1, tab2);
-	}
-}
-*/
+
 
 infected::infected(person* &p)
 {
