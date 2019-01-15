@@ -14,9 +14,8 @@ public:
 	virtual void zjedz() = 0;
 };
 
-class CSsak:public CZwierze{
-public:
-	int speed;
+class CSsak: virtual public CZwierze{
+public:	int speed;
 
 	CSsak() :CZwierze(),speed(0) { cout << "konstruktor bezarg cssak\n"; }
 	CSsak(string nazwa_, double waga_,int speed_) :CZwierze(nazwa_,waga_), speed(speed_){ cout << "konstruktor argumentowy2\n"; }
@@ -24,7 +23,7 @@ public:
 	void zjedz() { cout << "ssak" << nazwa << "je\n"; }
 };
 
-class CPtak:public CZwierze {
+class CPtak:  virtual public CZwierze {
 private:
 	int speed;
 public:
@@ -34,7 +33,7 @@ public:
 	void zjedz() { cout << "ssak" << nazwa << "je\n"; }
 };
 
-class CNietoperz : public CPtak, public CSsak {
+class CNietoperz :  public CPtak,  public CSsak {
 
 public:
 	CNietoperz() :CPtak(),CSsak(){ cout << "konstruktor bezarg cnietoperz\n"; }
