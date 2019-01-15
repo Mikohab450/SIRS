@@ -41,22 +41,46 @@ void simulate(int N, int M, double p1, string file_name, int it) {
 }
 */
 
-
+infected::infected(person* &p)
+{
+	t = p->get_time();
+}
+resistable::resistable( person* &p)
+{
+	t = p->get_time();
+}
 
 population::population(string file_name, int N_, int M_, double p) : N(N_), M(M_), p1(p), p2(0.7*p) {
 	file_.open(file_name);
-//	tab1.reserve(N, vector<person*>(M, new susceptible()));
-	//tab2.reserve(N);
-	//tab1[N / 2][M / 2] = new infected();
+	for (int i = 0; i < N; i++)
+	{
+		tab2.push_back(vector<person*>());
+		tab1.push_back(vector<person*>());
+		for (int j = 0; j < M; j++)
+		{
+			tab2[i].push_back(new susceptible());
+			tab1[i].push_back(new susceptible());
+		}
+	}
+	tab1[N / 2][M / 2] = new infected();
 }
-void population::generate()//const vector<vector<person*>> & tab1,vector<vector<person*>> & tab2)
-{
-	//double p2 = p1*0.7;
-	//vector<vector<person*> > tab2(N, vector<person*>(M));
-	bool stayed_healthy;
-	int count_infected, count_healthy, count_resistable;
-	int current_neighbour_i, current_neighbour_j;			//Oznaczenia wspolrzednych aktualnie wyliczanej komorki sasiedniej
 
+population::~population() {
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+
+			delete tab1[i][j];
+	}
+}
+void population::generate()
+{
+	bool stayed_healthy;
+	int count_infected = 0, count_healthy = 0, count_resistable = 0;
+	int current_neighbour_i, current_neighbour_j;			//Oznaczenia wspolrzednych aktualnie wyliczanej komorki sasiedniej
+	//--(*tab1[1][1]);
+	//tab2[1][1] = new infected(tab1[1][1]);
+	
 		count_infected = count_healthy = count_resistable = 0;
 		for (int i = 0; i < N; i++)
 			for (int j = 0; j < M; j++)
@@ -83,23 +107,26 @@ void population::generate()//const vector<vector<person*>> & tab1,vector<vector<
 									current_neighbour_j = 0;
 							if (tab1[current_neighbour_i][current_neighbour_j] == dynamic_cast<infected*>(tab1[current_neighbour_i][current_neighbour_j])) {			//jezeli sasiad jest chory
 								if (abs(n) + abs(m) == 1)	//sasiedztwo von neumanna
-									if (sick(p1))
-									{
+									if (sick(p1))					//jezeli zachorowal
+									{	
+										delete tab2[i][j];
 										tab2[i][j] = new infected();
 										stayed_healthy = false;
 										break;
 									}
 									else {}
 								else				//rogi sasiedztwa moore'a
-									if (sick(p2)) {
+									if (sick(p2)) {							//jezeli zachorowal
+										delete tab2[i][j];
 										tab2[i][j] = new infected();
 										stayed_healthy = false;
 										break;
 									}
 							}
 						}
-					if (stayed_healthy)
+					if (stayed_healthy)									//jezeli nie zachorowal
 					{
+						delete tab2[i][j];
 						tab2[i][j] = new susceptible();
 						count_healthy++;
 					}
@@ -107,41 +134,41 @@ void population::generate()//const vector<vector<person*>> & tab1,vector<vector<
 				}
 				else
 				{
-					if (tab1[i][j] == dynamic_cast<infected*>(tab1[i][j]))	//jezeli osobnik jestchory
+					if (tab1[i][j] == dynamic_cast<infected*>(tab1[i][j]))	//jezeli osobnik jest chory
 					{
 
 						if ((--(*tab1[i][j])).get_time() == 0)
 						{
+							delete tab2[i][j];
 							tab2[i][j] = new resistable();
 							count_resistable++;
 						}
 						else
 						{
-							tab2[i][j] = tab1[i][j];
+							delete tab2[i][j];
+							tab2[i][j] = new infected(tab1[i][j]);
 							count_infected++;
 						}
 					}
-					else
-					{
-										//jezeli osobnik jest odporny
-					}
+					else	                         		//jezeli osobnik jest odporny
 					{
 						if ((--(*tab1[i][j])).get_time() == 0)
 						{
+							delete tab2[i][j];
 							tab2[i][j] = new susceptible();
 							count_healthy++;
 						}
 						else
 						{
-							tab2[i][j] = tab1[i][j];
+							delete tab2[i][j];
+							tab2[i][j] = new resistable(tab1[i][j]);
 							count_resistable++;
 						}
 					}
 				}
 			}
-		
+		swap(tab1, tab2);
 		file_<< endl << "zdrowych: " << count_healthy << endl << "chorych: " << count_infected << endl << "odpornych: " << count_resistable << endl;
 		file_ << endl;
-
 }
 

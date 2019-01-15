@@ -7,6 +7,7 @@
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 
 int main(int argc, char* argv[]) {
+	
 	srand(time(NULL));
 	int N, M, it;
 	double p;
@@ -38,11 +39,12 @@ int main(int argc, char* argv[]) {
 
 	}
 	population testowa(file, N, M, p);
+
 	for (int iteration = 0; iteration < it; iteration++) {
 		testowa.generate();
-		//	swap(tab1, tab2);
 	}
-	
+
 	_CrtDumpMemoryLeaks();
+
 	return 0;
 }
