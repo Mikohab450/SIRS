@@ -29,7 +29,7 @@ void infected::dec() {
 
 infected::infected(person* &p)
 {
-	t = p->get_time();
+	t = p->get_time();	//
 }
 resistable::resistable( person* &p)
 {
