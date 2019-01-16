@@ -1,12 +1,12 @@
 #include<iostream>
 #include"SIR.h"
 #include<ctime>
-#define _CRTDBG_MAP_ALLOC
 #include <cstdlib>
-#include <crtdbg.h>
-#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+
 
 int main(int argc, char* argv[]) {
+
+		bool N_check =false, M_check = false, p_check=false, i_check = false, file_check = false;
 	
 	srand(time(NULL));
 	int N, M, it;
@@ -18,33 +18,40 @@ int main(int argc, char* argv[]) {
 		if (tmp == "-N")
 		{
 			N = atoi(argv[++i]);
+			N_check = true;
 		}
 		if (tmp == "-M")
 		{
 			M = atoi(argv[++i]);
+			M_check = true;
 		}
 		if (tmp == "-i")
 		{
 			it = atoi(argv[++i]);
+			i_check = true;
 		}
 		if (tmp == "-p")
 		{
 			p = atof(argv[++i]);
-
+			p_check = true;
 		}
 		if (tmp == "-o")
 		{
 			file = argv[++i];
+			file_check = true;
 		}
 
 	}
-	population testowa(file, N, M, p);
+	if (N_check && M_check && i_check && p_check &&file_check) {
+		population testowa(file, N, M, p);
 
-	for (int iteration = 0; iteration < it; iteration++) {
-		testowa.generate();
+		for (int iteration = 0; iteration < it; iteration++) {
+			testowa.generate();
+		}
 	}
+	else
+		cout << "ERROR 420";
 
-	_CrtDumpMemoryLeaks();
 
 	return 0;
 }

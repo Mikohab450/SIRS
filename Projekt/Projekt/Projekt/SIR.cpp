@@ -1,7 +1,8 @@
 
 #include"SIR.h"
 #include<cstdlib>
-
+#define _CRTDBG_MAP_ALLOC
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 bool sick(double propability)
 {
 	double p;
@@ -19,17 +20,10 @@ resistable & resistable::operator--() {
 	t--;
 	return *this;
 }
-void resistable::dec() {
-	t--;
-}
-void infected::dec() {
-	t--;
-}
-
 
 infected::infected(person* &p)
 {
-	t = p->get_time();	//
+	t = p->get_time();	
 }
 resistable::resistable( person* &p)
 {
@@ -48,24 +42,29 @@ population::population(string file_name, int N_, int M_, double p) : N(N_), M(M_
 			tab1[i].push_back(new susceptible());
 		}
 	}
-	tab1[N / 2][M / 2] = new infected();
+	int i = rand() % N;
+	int j = rand() % M;
+	delete tab1[i][j];
+	tab1[i][j] = new infected();
 }
 
 population::~population() {
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < M; j++)
-
+		{
 			delete tab1[i][j];
+			delete tab2[i][j];
+		}
 	}
+	cout << "destruktor!";
 }
 void population::generate()
 {
 	bool stayed_healthy;
 	int count_infected = 0, count_healthy = 0, count_resistable = 0;
 	int current_neighbour_i, current_neighbour_j;			//Oznaczenia wspolrzednych aktualnie wyliczanej komorki sasiedniej
-	//--(*tab1[1][1]);
-	//tab2[1][1] = new infected(tab1[1][1]);
+
 	
 		count_infected = count_healthy = count_resistable = 0;
 		for (int i = 0; i < N; i++)

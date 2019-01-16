@@ -2,17 +2,16 @@
 #include<iostream>
 #include<vector>
 #include<fstream>
+#define _CRTDBG_MAP_ALLOC
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 using namespace std;
 
 class person {
 	public:
 		person() {}
 		person(int c) {}
-	//	person(const person* & p) {};
 		virtual int get_time()const = 0;
 		virtual person &  operator--() = 0;
-		virtual void dec() = 0;
-		
 	
 };
 
@@ -25,8 +24,7 @@ class infected: public person{
 			return t;
 		 }
 		 infected &  operator--();
-		 virtual void dec();
-		 
+
 };
 
 class resistable :public person {
@@ -39,8 +37,6 @@ class resistable :public person {
 			return t;
 		}
 		resistable &  operator--();
-		virtual void dec();
-		
 };
 
 class susceptible :public person {
@@ -52,8 +48,6 @@ class susceptible :public person {
 			return 0;
 		}
 		susceptible &  operator--() { return *this; };
-		virtual void dec() {};
-
 };
 
 class population
