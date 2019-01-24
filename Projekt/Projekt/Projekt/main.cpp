@@ -1,56 +1,61 @@
 #include<iostream>
-#include"SIR.h"
+#include"SIRS.h"
+#include"person.h"
 #include<ctime>
 #include <cstdlib>
 
 
 int main(int argc, char* argv[]) {
 
-		bool N_check =false, M_check = false, p_check=false, i_check = false, file_check = false;
-	
-	srand(time(NULL));
-	int N, M, it;
-	double p;
-	string file, tmp;;
-	for (int i = 1; i < argc; i++)
+	//srand(time(NULL));
+	int N = 30;
+	int M = 30;
+	int it=50;
+	double p=0.5;
+	string file = "default_file_out.txt";
+	string tmp=argv[argc-1];
+	if (tmp == "-h")
+		show_help();
+	for (int i = 1; i < argc-1; i++)
 	{
 		tmp = argv[i];
 		if (tmp == "-N")
 		{
-			N = atoi(argv[++i]);
-			N_check = true;
+			if(0<atoi(argv[++i]))
+				N = atoi(argv[i]);
 		}
 		if (tmp == "-M")
 		{
-			M = atoi(argv[++i]);
-			M_check = true;
+			if(0<atoi(argv[++i]))
+				M = atoi(argv[i]);
 		}
 		if (tmp == "-i")
 		{
 			it = atoi(argv[++i]);
-			i_check = true;
 		}
 		if (tmp == "-p")
 		{
 			p = atof(argv[++i]);
-			p_check = true;
+
 		}
 		if (tmp == "-o")
 		{
 			file = argv[++i];
-			file_check = true;
+
 		}
-
+		if (tmp == "-h")
+			show_help();
 	}
-	if (N_check && M_check && i_check && p_check &&file_check) {
-		population testowa(file, N, M, p);
-
-		for (int iteration = 0; iteration < it; iteration++) {
+	ofstream file_out(file);
+	
+		population testowa(N, M, p);
+		for (int iteration = 0; iteration < it && !testowa.all_population_healthy; iteration++) {
 			testowa.generate();
+			file_out << "iteracja " << iteration << endl << "chorych: " << testowa.num_of_infected << endl << "zdrowych: " << testowa.num_of_susceptible << endl << "odpornych: " << testowa.num_of_resistable << endl << endl;
+		//	file_out << testowa.num_of_infected << "\t " << testowa.num_of_susceptible << "\t " << testowa.num_of_resistable << endl;
 		}
-	}
-	else
-		cout << "ERROR 420";
+
+
 
 
 	return 0;

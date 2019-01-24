@@ -112,10 +112,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SIR.cpp" />
+    <ClCompile Include="person.cpp" />
+    <ClCompile Include="SIRS.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SIR.h" />
+    <ClInclude Include="person.h" />
+    <ClInclude Include="SIRS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
